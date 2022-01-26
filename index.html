@@ -1,12 +1,4 @@
-//create & call functions for each role's card
-
-//if statements for each role
-
-const generateHTML = (teamMembers) => {
-    for (i=0; i<teamMembers.length; i++) {
-        console.log(teamMembers[i])
-    }
-    return `<!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -18,11 +10,8 @@ const generateHTML = (teamMembers) => {
       <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-4">Hello World</h1>
-        <h2> ${teamMembers} </h2>
+        <h2> [object Object],[object Object] </h2>
         </div>
         </div>
     </body>
-    </html>`
-}
-
-module.exports= generateHTML;
+    </html>
