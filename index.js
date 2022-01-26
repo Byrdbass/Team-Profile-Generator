@@ -12,8 +12,7 @@ const fs = require('fs');
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
 
-const render = require('./src/page-template.js');
-const dataManager = require('./lib/Manager');
+//const render = require('./src/page-template.js');
 
 const teamMembers = [];
 const idArray = [];
@@ -27,10 +26,15 @@ const getName = (dataEmployee) => {
         })
     return dataEmployee
 }
+//do a get team to run the get role function
 
-// const getRole = (dataManager) => {
+//DO I NEED SUBCLASSES TO GET THIS TO RUN
+const getRole = (dataManager) => {
+    this.dataManager.choice = choice
+    this.dataManager.role = role
+    console.log(dataManager);
 
-// }
+}
 //runs the program starting with manager
 inquirer
     .prompt(Manager)
@@ -38,6 +42,7 @@ inquirer
         console.log(dataManager.name, dataManager.id, dataManager.email, dataManager.officeNum)
         if (dataManager.choice === 'Yes' && dataManager.role === 'Engineer') {
             getName();
+            //getRole();
             inquirer
                 .prompt(Engineer)
                 .then((dataEngineer) => {
@@ -55,3 +60,4 @@ inquirer
                 console.log('You have chosen to not add any team members')
             }
     });
+

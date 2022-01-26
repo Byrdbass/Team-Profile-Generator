@@ -28,5 +28,7 @@ const generateHTML = (dataManager, dataEmployee, dataEngineer, dataIntern) => {
     </html>`
 }
 
-fs.writeFile('../index.html', generateHTML(Manager, Employee, Engineer, Intern), (err) =>
+
+fs.writeFile('../index.html', generateHTML(), (err) =>
 err? console.log(err) : console.log('response written to file') );
+//module.exports= generateHTML();
