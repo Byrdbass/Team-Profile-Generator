@@ -1,4 +1,3 @@
-// need classes manager, engineer, intern
 //getName function, getRole function
 //requires subclasses, path, html(generator)
 
@@ -9,34 +8,50 @@ const Employee = require('./lib/Employee')
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
-const dataEngineer = require('./lib/Engineer');
-const dataEmployee = require('./lib/Employee');
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
 
-//const render = require('./src/page-template.js')
+const render = require('./src/page-template.js');
+const dataManager = require('./lib/Manager');
 
 const teamMembers = [];
 const idArray = [];
 
+//gets name for Employees that are interns and Engineers
+const getName = (dataEmployee) => {
+    inquirer
+        .prompt(Employee)
+        .then((dataEmployee) => {
+            console.log(dataEmployee)
+        })
+    return dataEmployee
+}
+
+// const getRole = (dataManager) => {
+
+// }
+//runs the program starting with manager
 inquirer
     .prompt(Manager)
     .then((dataManager) => {
         console.log(dataManager.name, dataManager.id, dataManager.email, dataManager.officeNum)
-        if (dataManager.choice === 'Yes') {
+        if (dataManager.choice === 'Yes' && dataManager.role === 'Engineer') {
+            getName();
             inquirer
-            .prompt(Employee)
-            .then((dataEmployee) => {
-                console.log(dataEmployee)
-            })
-        }
-        inquirer
-        .then(if (dataManager.role === 'Engineer') {
-            inquirer
-            .prompt(Engineer)
-            .then((dataEngineer)=> {
-                console.log(dataEngineer)
-            })
-        }
-    })
+                .prompt(Engineer)
+                .then((dataEngineer) => {
+                    console.log(dataEngineer)
+                })
+        } else
+            if (dataManager.choice === 'Yes' && dataManager.role === 'Intern') {
+                getName();
+                inquirer
+                    .prompt(Intern)
+                    .then((dataIntern) => {
+                        console.log(`The data for the intern is ${dataIntern}`);
+                    })
+            } else {
+                console.log('You have chosen to not add any team members')
+            }
+    });
