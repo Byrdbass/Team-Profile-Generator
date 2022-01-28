@@ -16,12 +16,15 @@ const fs = require('fs');
 const dataEngineer = require('./lib/EngineerQuestions');
 const dataIntern = require('./lib/InternQuestions');
 
-const DIST_DIR = path.resolve(__dirname, 'dist');
-const distPath = path.join(DIST_DIR, 'team.html');
+// const DIST_DIR = path.resolve(__dirname, 'dist');
+// const distPath = path.join(DIST_DIR, 'team.html');
 
 const generateHTML = require('./src/page-template');
 
 const teamMembers = [];
+// const managerArray = [];
+// const engineerArray = [];
+// const internArray = [];
 
 //gets name for Employees that are interns and Engineers
 
@@ -29,9 +32,10 @@ const teamMembers = [];
 inquirer
     .prompt(ManagerQuestions)
     .then((dataManager) => {
-        console.log(dataManager.name, dataManager.id, dataManager.email, dataManager.officeNum)
+        //console.log(dataManager.name, dataManager.id, dataManager.email, dataManager.officeNum)
         const manager1 = new Manager(dataManager.name, dataManager.id, dataManager.email, dataManager.officeNum); 
         teamMembers.push(manager1);
+        //managerArray.push(manager1)
         menu();
     });
 
@@ -43,6 +47,7 @@ inquirer
             .then(dataEngineer => {
                 const engineer1 = new Engineer(dataEngineer.name, dataEngineer.id, dataEngineer.email, dataEngineer.github);
                 teamMembers.push(engineer1);
+                //engineerArray.push(engineer1);
                 menu();
             }) 
         } else
@@ -51,11 +56,13 @@ inquirer
             .then(dataIntern => {
                 const intern1 = new Intern(dataIntern.name, dataIntern.id, dataIntern.email, dataIntern.school)
                 teamMembers.push(intern1);
+                //internArray.push(intern1);
                 menu()
             })
-        } else {console.log(teamMembers)
+        } else {//console.log(teamMembers)
+            //this will take the data and populate the HTML document
         var template = generateHTML(teamMembers);
-        console.log(template)
+        //console.log(template)
         fs.writeFile('index.html', template, (err) => 
         err? console.log(err) : console.log('response written to file'));
         }
