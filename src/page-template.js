@@ -1,46 +1,52 @@
-//create & call functions for each role's card
+const Engineer = require("../lib/Engineer");
 const Manager = require("../lib/Manager");
+//create & call functions for each role's card
+const generateManagerHTML = (manager) => {
+    return `<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+    <div class="card-header">${manager.name} , Manager</div>
+    <div class="card-body">
+      <h5 class="card-title">ID #${manager.id}</h5>
+      <p class="card-text">Email: ${manager.email}</p>
+      <p class="card-text">Office Number: ${manager.officeNum}</p>
+    </div>`
+}
+
+//put a link element in here for email of all three cards
+//put a link element in here for gitHub to open in new tab
+const generateEngineerHTML = (engineer) => {
+  return `<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+  <div class="card-header">${engineer.name} , Engineer</div>
+  <div class="card-body">
+    <h5 class="card-title">ID #${engineer.id}</h5>
+    <p class="card-text">Email: ${engineer.email}</p>
+    <p class="card-text">Office Number: ${engineer.github}</p>
+  </div>`
+}
+
+const generateInternHTML = (intern) => {
+  return `<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+  <div class="card-header">${intern.name} , Intern</div>
+  <div class="card-body">
+    <h5 class="card-title">ID #${intern.id}</h5>
+    <p class="card-text">Email: ${intern.email}</p>
+    <p class="card-text">Office Number: ${intern.school}</p>
+  </div>`
+}
 
 
-// const generateTeam = teamMembers => {
-//   const makeManager = manager => {
-//     return `html card`
-//   }
-// }
-// return join all the HTML functions
+const generateHTML = (teamMembers) => {
 
-//if statements for each role
-//managerList = teamMembers.Manager
-const generateHTML = (teamMembers, manager) => {
-  for (i = 0; i < teamMembers.length; i++) {
-    console.log()
- 
-    console.log('the current position is ' + [i]);
-    managerName = teamMembers[0].name
-    managerId = teamMembers[0].id
-    managerEmail = teamMembers[0].email 
-    managerOfficeNum = teamMembers[0].officeNum
-    //     console.log('managers: ' + managerArray, 'engineers: ' + engineerArray, internArray)
-    //       if (managerArray.indexOf === -1) {
-    //         console.log("there are no managers in this array")
-    //       } else
-  }
+  const getManagers = teamMembers.filter(Manager => Manager.getRole() === "Manager")
+  .map(manager => generateManagerHTML(manager))
 
-  const generateManagerHTML = (managerName, managerId, managerEmail, managerOfficeNum) => {
-    // const makeManager = manager => {
-      return `<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-      <div class="card-header">${managerName}</div>
-      <div class="card-body">
-        <h5 class="card-title">ID #${managerId}</h5>
-        <p class="card-text">Email: ${managerEmail}</p>
-        <p class="card-text">Office Number: ${managerOfficeNum}</p>
-      </div>`
-    // }
-  }
+  const getEngineers = teamMembers.filter(Engineer => Engineer.getRole() === "Engineer")
+  .map(engineer => generateEngineerHTML(engineer))
 
-teamMembers.filter(Manager => Manager.getRole() === "Manager")
-.map(manager => generateManagerHTML(manager))
-.join
+  const getInterns = teamMembers.filter(Intern => Intern.getRole() === "Intern")
+  .map(intern => generateInternHTML(intern))
+
+
+console.log(getEngineers)
 
   return `<!DOCTYPE html>
     <html lang="en">
@@ -52,9 +58,10 @@ teamMembers.filter(Manager => Manager.getRole() === "Manager")
     <body>
       <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1 class="display-4">Hello World</h1>
-        <h2> ${manager}
-        ${generateManagerHTML(manager)} </h2>
+        <h1 class="display-4">Team Profile!</h1>
+        <div class='my-2 mx-3'>${getManagers} </div>
+        <div class='my-2 mx-3'>${getEngineers} </div>
+        <div class='my-2 mx-3'>${getInterns} </div>
         </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
