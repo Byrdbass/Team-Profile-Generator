@@ -2,12 +2,13 @@ const Engineer = require("../lib/Engineer");
 const Manager = require("../lib/Manager");
 //create & call functions for each role's card
 const generateManagerHTML = (manager) => {
-    return `<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-    <div class="card-header">${manager.name} , Manager</div>
+    return `<div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+    <div class="card-header">${manager.name} , Manager \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<img src="images/cup-fill.svg"></div>
     <div class="card-body">
-      <h5 class="card-title">ID #${manager.id}</h5>
-      <p class="card-text">Email: ${manager.email}</p>
+      <h5 class="card-title"><i class="bi bi-eyeglasses"></i>ID #${manager.id}</h5>
+      <p class="card-text">Email: <a href="mailto: ${manager.email}" target="_blank">${manager.email}</a></p>
       <p class="card-text">Office Number: ${manager.officeNum}</p>
+    </div>
     </div>`
 }
 
@@ -15,21 +16,23 @@ const generateManagerHTML = (manager) => {
 //put a link element in here for gitHub to open in new tab
 const generateEngineerHTML = (engineer) => {
   return `<div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-  <div class="card-header">${engineer.name} , Engineer</div>
+  <div class="card-header">${engineer.name} , Engineer \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<img src="images/eyeglasses.svg"></div>
   <div class="card-body">
     <h5 class="card-title">ID #${engineer.id}</h5>
-    <p class="card-text">Email: ${engineer.email}</p>
-    <p class="card-text">Office Number: ${engineer.github}</p>
+    <p class="card-text">Email: <a href="mailto: ${engineer.email}" target="_blank">${engineer.email}</a></p>
+    <p class="card-text">gitHub: <a href="https://github.com/${engineer.github}" target="_blank"> ${engineer.github}</a></p>
+  </div>
   </div>`
 }
 
 const generateInternHTML = (intern) => {
   return `<div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-  <div class="card-header">${intern.name} , Intern</div>
+  <div class="card-header">${intern.name} , Intern \u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0<img src="images/book.svg"></div>
   <div class="card-body">
     <h5 class="card-title">ID #${intern.id}</h5>
-    <p class="card-text">Email: ${intern.email}</p>
-    <p class="card-text">Office Number: ${intern.school}</p>
+    <p class="card-text">Email: <a href="mailto:${intern.email}" target="_blank">${intern.email}</a></p>
+    <p class="card-text">School attending: ${intern.school}</p>
+  </div>
   </div>`
 }
 
@@ -57,11 +60,13 @@ console.log(getEngineers)
     </head>
     <body>
       <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Team Profile!</h1>
-        <div class='my-2 mx-3'>${getManagers} </div>
-        <div class='my-2 mx-3'>${getEngineers} </div>
-        <div class='my-2 mx-3'>${getInterns} </div>
+        <h1 class="display-4 text-center">Team Profile!</h1>
+        </div>
+        <div class="container">
+        <div class="row row-cols-6">
+        <div class= "my-2 mx-3">${getManagers} </div>
+        <div class="my-2 mx-3">${getEngineers} </div>
+        <div class="my-2 mx-3">${getInterns} </div>
         </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
